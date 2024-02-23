@@ -27,6 +27,7 @@ const SsoLogin = () => {
         <h1>Login</h1><br/>
         <div className='GoogleLogin'>
         <GoogleLogin onSuccess={handleResponse}/><br/>
+        <h1>hi</h1>
         </div>
         </div>
     </div>
