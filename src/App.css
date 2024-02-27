@@ -1,3 +1,22 @@
-.App {
-  padding: 4rem;
+.navbar{
+  height:50px;
+  background-color:rgba(102,16,83,0.698);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content: space-around;
+}
+.list{
+  display:flex;
+  align-items: center;
+  list-style: none;
+}
+.listItems{
+  margin-right:20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.avatar{
+  width:32px;
+  height:32px
 }

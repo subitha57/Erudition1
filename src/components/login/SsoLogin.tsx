@@ -2,6 +2,8 @@ import { CredentialResponse, GoogleLogin } from '@react-oauth/google'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'universal-cookie';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
 import './ssoLogin.css'
 
 const SsoLogin = () => {
@@ -27,7 +29,9 @@ const SsoLogin = () => {
         <h1>Login</h1><br/>
         <div className='GoogleLogin'>
         <GoogleLogin onSuccess={handleResponse}/><br/>
-        <h1>hi</h1>
+        {/*<button><div>
+      <GoogleIcon />
+  </div>Google</button>*/}
         </div>
         </div>
     </div>

@@ -4,11 +4,12 @@ import './LoginPage.css';
 import { FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 import { LoginSocialFacebook, LoginSocialGoogle } from "reactjs-social-login";
 
+
 export const LoginPage = () => {
   return (
     <div className='container '>
         <div className="shadow p-3 mb-5 mt-5 bg-white rounded">
-    <h2>LoginPage</h2><br/>
+    <h2>Login</h2><br/>
 
     <div>
             <TextField id="email" label="Email" size='small' variant="outlined" />
@@ -16,7 +17,7 @@ export const LoginPage = () => {
        
 
     <Button variant='contained' color='primary'>Continue</Button><br/><br/>
-   <span>Or continue with</span><br/>
+   
 
    <div>
       <LoginSocialGoogle
