@@ -6,13 +6,13 @@ import { Google } from '@mui/icons-material';
 
 
 const OAuthLogin: React.FC = () => {
+  const [data, setData]=useState<string>('')
   const handleLogin = async () => {
     try {
       // Make a GET request to your OAuth provider's authorization URL
-      const response = await axios.get('https://o-auth-2-0.onrender.com/auth/google');
-      
-      // Redirect to the authorization URL
-      window.location.href = response.data.authorizationUrl;
+      const response = await axios.get('https://er-oauth.onrender.com/auth/google');
+      setData(response.data);
+     // window.location.href = response.data.authorizationUrl;
     } catch (error) {
       console.error('OAuth login failed:', error);
     }
@@ -26,6 +26,10 @@ const OAuthLogin: React.FC = () => {
       <Button variant="outlined"  onClick={handleLogin} > <br/>
       <Google style={{ color: 'blue' }}  />
        Google</Button>
+       <div>
+          <div dangerouslySetInnerHTML={{ __html:data }} />
+</div>
+
        </div>
        </div>
     </div>

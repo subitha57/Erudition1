@@ -1,41 +1,62 @@
-import { CredentialResponse, GoogleLogin } from '@react-oauth/google'
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Cookies from 'universal-cookie';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GoogleIcon from '@mui/icons-material/Google';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Link, Navigate } from 'react-router-dom';
+import { Button, TextField } from '@mui/material';
 import './ssoLogin.css'
 
-const SsoLogin = () => {
-    const navigate = useNavigate();
-    const cookies = new Cookies();
-    useEffect(()=>{
-        const token:string = cookies.get("token") as string;
-        if(token){
-            navigate("/");
-        }
-    },[])
+const Login: React.FC = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+  
 
-
-    const handleResponse = (res:CredentialResponse)=>{
-        cookies.set("token",JSON.stringify(res.credential),{
-            maxAge:3600,
-        })
-        navigate("/")
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('your-sso-api-url', {
+        username,
+        password,
+      });
+      console.log('Login successful:', response.data);
+      // Redirect user to the desired page upon successful login
+    } catch (error) {
+      console.error('Login failed:', error);
+      // Handle login failure (e.g., display error message)
     }
-  return (
-    <div className='container'>
-        <div className='shadow'>
-        <h1>Login</h1><br/>
-        <div className='GoogleLogin'>
-        <GoogleLogin onSuccess={handleResponse}/><br/>
-        {/*<button><div>
-      <GoogleIcon />
-  </div>Google</button>*/}
-        </div>
-        </div>
-    </div>
-  )
-}
+    if (loggedIn) {
+        return <Navigate to="/Home" />;
+      }
+    
+  };
 
-export default SsoLogin
+  return (
+    <div>
+    <div className='login'>
+      <h2>Login</h2><br/>
+      <div>
+        <TextField label="Username" variant="outlined" 
+          type="text"
+          value={username}
+          onChange={(e:any) => setUsername(e.target.value)}
+        />
+      </div><br/>
+      <div>
+       
+        <TextField label="Password" variant="outlined" 
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div><br/>
+      <div className='button'>
+      <button onClick={handleLogin}>Login</button><br/>
+      </div>
+        <div>
+      <Link to="/forgot-password">Forgot Password?</Link> 
+      </div><br/>
+      </div>
+    </div>
+  );
+
+};
+
+export default Login;

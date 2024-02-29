@@ -34,11 +34,7 @@ const Login: React.FC = () => {
       setError('Failed to login');
     }
   };
-  {/*const googleClick = async() =>{
-    const response = await axios.get(' https://o-auth-2-0.onrender.com/auth/google');
-  console.log(response.data);
-  }*/}
-
+  
   return (
     <div className='login-container'>
       <h2>Login</h2><br/>
